@@ -5,44 +5,46 @@ import React from "react";
 
 export const TasksNew = ({ todo, changTodo }) => {
   console.log(todo);
-  return (
-    <View styles={styles.tasksContainer}>
-      <View style={styles.task}>
-        <View style={styles.containerTaskImage}>
-          <Image
-            style={styles.taskImage}
-            source={{
-              uri: todo.urlItem,
+  if (!todo.isCompleted) {
+    return (
+      <View styles={styles.tasks}>
+        <View style={styles.task}>
+          <View style={styles.containerTaskImage}>
+            <Image
+              style={styles.taskImage}
+              source={{
+                uri: todo.categoryUrl,
+              }}
+            />
+          </View>
+
+          <View style={styles.taskTitle}>
+            <Text style={styles.taskTitleText}>{todo.title}</Text>
+            <Text style={styles.taskTitleTime}>{todo.time}</Text>
+          </View>
+
+          <BouncyCheckbox
+            onPress={() => changTodo(todo.id)}
+            size={25}
+            unfillColor="#FFFFFF"
+            fillColor="#4A3780"
+            iconStyle={{ borderRadius: 3 }}
+            innerIconStyle={{
+              borderWidth: 1,
+              borderRadius: 3,
+              borderColor: "#4A3780",
             }}
           />
         </View>
-
-        <View style={styles.taskTitle}>
-          <Text style={styles.taskTitleText}>{todo.title}</Text>
-          <Text style={styles.taskTitleTime}>{todo.time}</Text>
-        </View>
-
-        <BouncyCheckbox
-          onPress={() => changTodo(todo.id)}
-          size={25}
-          unfillColor="#FFFFFF"
-          fillColor="#4A3780"
-          iconStyle={{ borderRadius: 3 }}
-          innerIconStyle={{
-            borderWidth: 1,
-            borderRadius: 3,
-            borderColor: "#4A3780",
-          }}
-        />
       </View>
-    </View>
-  );
+    );
+  }
 };
 
 const styles = StyleSheet.create({
   tasks: {
     // flex: 1,
-    minHeight: 80,
+    // minHeight: 80,
     backgroundColor: "#FFFFFF",
     borderRadius: 15,
     bottom: 30,
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   task: {
-    minHeight: 80,
+    // minHeight: 80,
     borderBottomWidth: 1,
     borderBottomColor: "#E5E9ED",
     padding: 16,

@@ -11,44 +11,21 @@ import {
 import React from "react";
 import { ChangeDate, ChangeTime } from "../components/ChangeDateTime";
 
-const Error = ({ isRequired }) => {
-  const textError = "The field is not filled in";
-  if (!isRequired) {
-    return <Text style={styles.textError}>*{textError}</Text>;
-  }
-};
-
-export const AddNewTask = ({ navigation, route }) => {
-  let idViewTodo = route.params.idChooseTodo;
-  let chooseViewTodo = route.params.todo.find((item) => item.id === idViewTodo);
-  console.log(chooseViewTodo);
-  const [titleNew, onChangeText] = React.useState(chooseViewTodo?.title);
-  const [dateNew, onChangeDate] = React.useState(chooseViewTodo?.date);
-  const [timeNew, onChangeTime] = React.useState(chooseViewTodo?.time);
-  const [notesNew, onChangeNotes] = React.useState(chooseViewTodo?.notion);
-  const uniqueId = chooseViewTodo
-    ? chooseViewTodo.id
-    : Math.round(Math.random() * 1000);
-
-  // let uniqueId = Math.round(Math.random() * 1000);
-  const [category, onChangeCategory] = React.useState(
-    chooseViewTodo ? chooseViewTodo.category : "Event"
-  );
-  const props = route.params;
-  console.log(props);
-  let [isRequired, setIsRequired] = React.useState(
-    chooseViewTodo ? chooseViewTodo.isCompleted : true
-  );
-  const newElement = {
-    id: uniqueId,
-    title: titleNew,
-    category: category,
-    date: dateNew,
-    time: timeNew,
-    notion: notesNew,
-    isCompleted: false,
+export const ViewTask = ({ navigation, route }) => {
+  const catalogUrl = {
+    Task: require("../images/CategoryTask.png"),
+    Goal: require("../images/CategoryGoal.png"),
+    Event: require("../images/CategoryEvent.png"),
   };
-
+  let idChooseTodo = route.params.idChooseTodo;
+  const dataCurrentTodo = route.params.todo.find(
+    (item) => item.id === idChooseTodo
+  );
+  const titleNew = dataCurrentTodo.title;
+  const dateNew = dataCurrentTodo.date;
+  const timeNew = dataCurrentTodo.time;
+  const notesNew = dataCurrentTodo.notion;
+  let addressURL = catalogUrl[dataCurrentTodo.category];
   return (
     <ScrollView
       style={styles.scrollContainer}
@@ -60,44 +37,27 @@ export const AddNewTask = ({ navigation, route }) => {
             <Image source={require("../images/CloseX.png")} />
           </Pressable>
         </View>
-        <Text style={styles.titleScreen}>Add New Task</Text>
+        <Text style={styles.titleScreen}>View Task</Text>
         <Text style={styles.ghost}></Text>
       </View>
       <View style={styles.containerNewTask}>
         <View>
-          <Text style={[styles.inputLabel]}>Task Title*</Text>
-          <TextInput
-            style={isRequired ? styles.input : [styles.input, styles.required]}
-            onBlur={() => {
-              if (!titleNew) {
-                setIsRequired(false);
-              } else {
-                setIsRequired(true);
-              }
-            }}
-            onChangeText={onChangeText}
-            value={titleNew}
-            placeholder="Task Title"
-          />
-          <Error isRequired={isRequired} />
+          <Text style={[styles.inputLabel]}>Task Title</Text>
+          <Text style={styles.input}>{titleNew}</Text>
         </View>
 
         <View style={styles.category}>
           <Text style={[styles.inputLabel]}>Category</Text>
           <View style={styles.chooseCategory}>
             <Pressable
-              style={
-                category === "Event"
-                  ? [styles.chooseImageCategory, styles.active]
-                  : styles.chooseImageCategory
-              }
+              style={[styles.chooseImageCategory, styles.active]}
               onPress={() => {
                 onChangeCategory("Event");
               }}
             >
-              <Image source={require("../images/CategoryEvent.png")} />
+              <Image source={addressURL} />
             </Pressable>
-            <Pressable
+            {/* <Pressable
               style={
                 category === "Goal"
                   ? [styles.chooseImageCategory, styles.active]
@@ -108,8 +68,8 @@ export const AddNewTask = ({ navigation, route }) => {
               }}
             >
               <Image source={require("../images/CategoryGoal.png")} />
-            </Pressable>
-            <Pressable
+            </Pressable> */}
+            {/* <Pressable
               style={
                 category === "Task"
                   ? [styles.chooseImageCategory, styles.active]
@@ -120,48 +80,37 @@ export const AddNewTask = ({ navigation, route }) => {
               }}
             >
               <Image source={require("../images/CategoryTask.png")} />
-            </Pressable>
+            </Pressable> */}
           </View>
         </View>
 
         <View style={styles.containerDateTime}>
           <View style={styles.fieldsDateTime}>
             <Text style={[styles.inputLabel]}>Date: {dateNew}</Text>
-            <ChangeDate onChangeDate={onChangeDate} />
           </View>
           <View style={styles.fieldsDateTime}>
             <Text style={[styles.inputLabel]}>Time: {timeNew}</Text>
-            <ChangeTime onChangeTime={onChangeTime} />
           </View>
         </View>
 
         <View>
           <Text style={[styles.inputLabel]}>Notes</Text>
-
-          <TextInput
-            style={[styles.input, styles.notes]}
-            multiline={true}
-            rows={4}
-            textAlignVertical={"top"}
-            onChangeText={onChangeNotes}
-            value={notesNew}
-            placeholder="Notes"
-          />
+          <Text style={[styles.input, styles.notes]}>{notesNew}</Text>
         </View>
       </View>
 
       <Pressable
         style={styles.buttonSave}
         onPress={() => {
-          if (!newElement["title"]) {
-            setIsRequired(false);
-          } else {
-            props.setTodo([...props.todo, newElement]);
-            navigation.navigate("Home");
-          }
+          // props.setTodo([...props.todo, newElement]);
+          navigation.navigate("AddNewTask", {
+            idChooseTodo: idChooseTodo,
+            todo: route.params.todo,
+            setTodo: route.params.setTodo,
+          });
         }}
       >
-        <Text style={styles.buttonTextSave}>Save</Text>
+        <Text style={styles.buttonTextSave}>Edit</Text>
       </Pressable>
     </ScrollView>
   );
