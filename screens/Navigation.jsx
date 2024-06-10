@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { HomeScreen } from "./Home";
-import { AddNewTask } from "./AddNewTask";
-import { ViewTask } from "./ViewTask";
+import { HomeScreen } from "./Home/HomeScreen";
+import { AddNewTaskScreen } from "./AddTask/AddNewTaskScreen";
+import { ViewTaskScreen } from "./ViewTask/ViewTaskScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -11,11 +11,11 @@ export const Navigation = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{ headerShown: false }}
-        initialRouteName="Home"
+        initialRouteName="HomeScreen"
       >
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="AddNewTask" component={AddNewTask} />
-        <Stack.Screen name="ViewTask" component={ViewTask} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="AddNewTaskScreen" component={AddNewTaskScreen} />
+        <Stack.Screen name="ViewTaskScreen" component={ViewTaskScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

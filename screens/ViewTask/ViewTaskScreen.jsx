@@ -9,13 +9,15 @@ import {
   Dimensions,
 } from "react-native";
 import React from "react";
-import { ChangeDate, ChangeTime } from "../components/ChangeDateTime";
 
-export const ViewTask = ({ navigation, route }) => {
+import { ChangeDate, ChangeTime } from "../../components/ChangeDateTime";
+
+export const ViewTaskScreen = ({ navigation, route }) => {
   const catalogUrl = {
-    Task: require("../images/CategoryTask.png"),
-    Goal: require("../images/CategoryGoal.png"),
-    Event: require("../images/CategoryEvent.png"),
+    Task: require("../../images/CategoryTask.png"),
+
+    Goal: require("../../images/CategoryGoal.png"),
+    Event: require("../../images/CategoryEvent.png"),
   };
   let idChooseTodo = route.params.idChooseTodo;
   const dataCurrentTodo = route.params.todo.find(
@@ -33,8 +35,8 @@ export const ViewTask = ({ navigation, route }) => {
     >
       <View style={styles.header}>
         <View style={styles.buttonExit}>
-          <Pressable onPress={() => navigation.navigate("Home")}>
-            <Image source={require("../images/CloseX.png")} />
+          <Pressable onPress={() => navigation.navigate("HomeScreen")}>
+            <Image source={require("../../images/CloseX.png")} />
           </Pressable>
         </View>
         <Text style={styles.titleScreen}>View Task</Text>
@@ -57,30 +59,6 @@ export const ViewTask = ({ navigation, route }) => {
             >
               <Image source={addressURL} />
             </Pressable>
-            {/* <Pressable
-              style={
-                category === "Goal"
-                  ? [styles.chooseImageCategory, styles.active]
-                  : styles.chooseImageCategory
-              }
-              onPress={() => {
-                onChangeCategory("Goal");
-              }}
-            >
-              <Image source={require("../images/CategoryGoal.png")} />
-            </Pressable> */}
-            {/* <Pressable
-              style={
-                category === "Task"
-                  ? [styles.chooseImageCategory, styles.active]
-                  : styles.chooseImageCategory
-              }
-              onPress={() => {
-                onChangeCategory("Task");
-              }}
-            >
-              <Image source={require("../images/CategoryTask.png")} />
-            </Pressable> */}
           </View>
         </View>
 
@@ -103,7 +81,7 @@ export const ViewTask = ({ navigation, route }) => {
         style={styles.buttonSave}
         onPress={() => {
           // props.setTodo([...props.todo, newElement]);
-          navigation.navigate("AddNewTask", {
+          navigation.navigate("AddNewTaskScreen", {
             idChooseTodo: idChooseTodo,
             todo: route.params.todo,
             setTodo: route.params.setTodo,
