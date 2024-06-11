@@ -2,11 +2,15 @@ import { View, Image, Text, StyleSheet, Pressable } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { catalogUrl } from "../../../index";
 
 export const CreateTask = ({ item, todo, setTodo }) => {
-  let addressURL = catalogUrl[item.category];
   const navigation = useNavigation();
+  const catalogUrl = {
+    Task: require("../../../images/CategoryTask.png"),
+    Goal: require("../../../images/CategoryGoal.png"),
+    Event: require("../../../images/CategoryEvent.png"),
+  };
+  let addressURL = catalogUrl[item.category];
   const changTodo = (id) => {
     const copyTodo = [...todo];
     const currentTodo = copyTodo.find((item) => item.id === id);

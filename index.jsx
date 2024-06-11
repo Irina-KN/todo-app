@@ -69,8 +69,14 @@ export const Task = {
   isCompleted: false,
 };
 
-export const catalogUrl = {
-  Task: require("../TODOv0/images/CategoryTask.png"),
-  Goal: require("../TODOv0/images/CategoryGoal.png"),
-  Event: require("../TODOv0/images/CategoryEvent.png"),
-};
+// export const catalogUrl = {
+//   Task: require("/Users/irirnafeshchenko/Documents/project_react_native/expoAplicationTodo/TODOv0/images/CategoryTask.png"),
+//   Goal: require("/Users/irirnafeshchenko/Documents/project_react_native/expoAplicationTodo/TODOv0/images/CategoryGoal.png"),
+//   Event: require("/Users/irirnafeshchenko/Documents/project_react_native/expoAplicationTodo/TODOv0/images/CategoryEvent.png"),
+// };
+
+// export const catalogUrl = {
+//   Task: require("images/CategoryTask.png"),
+//   Goal: require("images/CategoryGoal.png"),
+//   Event: require("images/CategoryEvent.png"),
+// };

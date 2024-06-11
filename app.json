@@ -4,10 +4,10 @@
     "slug": "todo",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "https://cdn-icons-png.flaticon.com/512/15198/15198197.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "https://cdn-icons-png.flaticon.com/512/15198/15198197.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,12 +19,19 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "https://cdn-icons-png.flaticon.com/512/15198/15198197.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.irina_fn.todo"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+     
+      "favicon": "https://cdn-icons-png.flaticon.com/512/15198/15198197.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "03636f40-a68b-4b75-b7ae-3ad5e9d76c90"
+      }
     }
   }
 }

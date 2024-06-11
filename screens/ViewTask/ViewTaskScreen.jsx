@@ -13,12 +13,6 @@ import React from "react";
 import { ChangeDate, ChangeTime } from "../../components/ChangeDateTime";
 
 export const ViewTaskScreen = ({ navigation, route }) => {
-  const catalogUrl = {
-    Task: require("../../images/CategoryTask.png"),
-
-    Goal: require("../../images/CategoryGoal.png"),
-    Event: require("../../images/CategoryEvent.png"),
-  };
   let idChooseTodo = route.params.idChooseTodo;
   const dataCurrentTodo = route.params.todo.find(
     (item) => item.id === idChooseTodo
@@ -27,6 +21,11 @@ export const ViewTaskScreen = ({ navigation, route }) => {
   const dateNew = dataCurrentTodo.date;
   const timeNew = dataCurrentTodo.time;
   const notesNew = dataCurrentTodo.notion;
+  const catalogUrl = {
+    Task: require("../../images/CategoryTask.png"),
+    Goal: require("../../images/CategoryGoal.png"),
+    Event: require("../../images/CategoryEvent.png"),
+  };
   let addressURL = catalogUrl[dataCurrentTodo.category];
   return (
     <ScrollView
